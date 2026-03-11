@@ -131,7 +131,7 @@ export default function Home() {
               textFooter="A partir de R$500,00"
             />
 
-             <Card
+            <Card
               icon={<LuStar color="black" />}
               title="Higienização Interna"
               description="Limpeza profunda de bancos, carpetes e painés com ozônio "
@@ -144,8 +144,6 @@ export default function Home() {
             Agendar serviço
             <LuArrowRight />
           </Button>
-
-          
 
         </VStack>
 
