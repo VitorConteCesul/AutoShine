@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, ButtonGroup, Heading, HStack, Steps, Text, useSteps, VStack } from "@chakra-ui/react";
+import { Button, Heading, HStack, Steps, Text, useSteps, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { LuArrowLeft } from "react-icons/lu";
 
