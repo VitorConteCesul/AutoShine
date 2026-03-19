@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, ButtonGroup, Heading, Steps, Text, useSteps, VStack } from "@chakra-ui/react";
+import { Button, Heading, HStack, Steps, Text, useSteps, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { LuArrowLeft } from "react-icons/lu";
 
@@ -50,11 +50,11 @@ export default function Agendar() {
           ))}
           <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>
 
-          <ButtonGroup w="100%"size="sm" variant="outline">
+            <HStack w="100%" justify="end">
             <Steps.NextTrigger asChild>
-              <Button>Next</Button>
+              <Button size="lg" colorPalette="yellow" rounded="lg">Continuar</Button>
             </Steps.NextTrigger>
-          </ButtonGroup>
+            </HStack>
         </Steps.RootProvider>
       </VStack>
     </VStack>
