@@ -1,60 +1,61 @@
 "use client"
 
-import { Button, Heading, HStack, Steps, Text, useSteps, VStack } from "@chakra-ui/react";
+import { Button, Heading, HStack, Separator, Steps, Text, useSteps, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { LuArrowLeft } from "react-icons/lu";
 
 export default function Agendar() {
-
   const steps = useSteps({
     defaultStep: 0,
     count: items.length,
-  })
+  });
 
   const router = useRouter();
 
   function handleGoToPrevStep() {
     if (steps.hasPrevStep) {
-      steps.goToPrevStep()
+      steps.goToPrevStep();
     } else {
-      router.push("/")
+      router.push("/");
     }
   }
 
   return (
     <VStack as="main" gap={0}>
-      <VStack as="section" w="100vw" align="start" pt={28} pb={16} px={6}>
-        <Button onClick={handleGoToPrevStep} variant="ghost" rounded="lg" mb={6} >
+      <VStack w="100%" maxW={1440} mx="auto" as="section" align="start" pt={28} pb={16} px={6}>
+        <Button onClick={handleGoToPrevStep} variant="ghost" rounded="lg" mb={6}>
           <LuArrowLeft />
           {steps.hasPrevStep ? "Voltar" : "Inicio"}
         </Button>
 
-        <Heading as="h1" fontSize="4xl" >Agendar Serviços</Heading>
+        <Heading as="h1" fontSize="4xl" mb={2}>Agendar Serviço</Heading>
 
-        {/* {!setSourceMapsEnabled.isCO} */}
-        <Text>Passo {steps.value + 1} de {items.length}</Text>
+        {!steps.isCompleted && <Text mb={8}>Passo {steps.value + 1} de {steps.count}</Text>}
+
+        {steps.isCompleted && <Text mb={8}>Completo!</Text>}
 
         <Steps.RootProvider value={steps}>
-          <Steps.List>
+          <Steps.List gap={4}>
             {items.map((step, index) => (
-              <Steps.Item key={index} index={index} title={step.title}>
-                <Steps.Indicator />
-                <Steps.Separator />
+              <Steps.Item flex={1} key={index} index={index} title={step.title}>
+                <Separator w="100%" borderColor={steps.value >= index ? "yellow.500" : "white"} borderWidth={2} />
               </Steps.Item>
             ))}
           </Steps.List>
+
           {items.map((step, index) => (
             <Steps.Content key={index} index={index}>
               {step.description}
             </Steps.Content>
           ))}
+
           <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>
 
-            <HStack w="100%" justify="end">
+          <HStack w="100%" justify="end">
             <Steps.NextTrigger asChild>
               <Button size="lg" colorPalette="yellow" rounded="lg">Continuar</Button>
             </Steps.NextTrigger>
-            </HStack>
+          </HStack>
         </Steps.RootProvider>
       </VStack>
     </VStack>
